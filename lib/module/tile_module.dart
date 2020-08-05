@@ -7,7 +7,7 @@ class TileModel{
   void setImageAssetPath(String getImageAssetPath){
     imageAssetPath= getImageAssetPath;
   }
-  void setIsselected(bool getIsSelected){
+  void setIsSelected(bool getIsSelected){
     isSelected=getIsSelected;
   }
   String getImageAssetPath(){
