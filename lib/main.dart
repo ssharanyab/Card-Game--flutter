@@ -23,7 +23,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<TileModel> pairs =new List<TileModel>();
+  List<TileModel> pairs = new List<TileModel>();
+  List<TileModel> visiblePairs = new List<TileModel>();
   @override
   void initState() {
     // ignore: todo
@@ -31,37 +32,48 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     pairs = getPairs();
     pairs.shuffle();
+    visiblePairs = pairs;
+    selected = true;
+    Future.delayed(const Duration(seconds: 5), () {
+      setState(() {
+        visiblePairs = getQuestions();
+        selected = false;
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Column(
-          children: <Widget>[
-            Text("Score:-"),
-            Text("0"),
-            Text("Points"),
-            SizedBox(
-              height : 20,
-            ),
-            GridView(
-              shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                mainAxisSpacing:0.0,
-                maxCrossAxisExtent: 100 
-                ),
-                children: List.generate(pairs.length, (index){
+          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 40,
+              ),
+              Text(
+                "$points",
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+              ),
+              Text("Points"),
+              SizedBox(
+                height: 20,
+              ),
+              GridView(
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    mainAxisSpacing: 0.0, maxCrossAxisExtent: 100),
+                children: List.generate(visiblePairs.length, (index) {
                   return Tile(
-                   imageAssetPath: pairs[index].getImageAssetPath(),
-                   selected : pairs[index].getIsSelected(),
-                   parent: this,
+                    imageAssetPath: visiblePairs[index].getImageAssetPath(),
+                    selected: visiblePairs[index].getIsSelected(),
+                    parent: this,
                   );
                 }),
-            )
-          ],
-        )
-        ),
+              )
+            ],
+          )),
     );
   }
 }
@@ -70,19 +82,24 @@ class Tile extends StatefulWidget {
   String imageAssetPath;
   bool selected;
   _HomePageState parent;
-  Tile({this.imageAssetPath,this.selected, this.parent});
+  Tile({this.imageAssetPath, this.selected, this.parent});
 
   @override
   _TileState createState() => _TileState();
 }
 
-class _TileState extends State<Tile>{
+class _TileState extends State<Tile> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(5),
-      child: Image.asset(widget.imageAssetPath),
-      
-    );
+    return GestureDetector(
+        onTap: () {
+          if(!selected){
+
+          }
+        },
+        child: Container(
+          margin: EdgeInsets.all(5),
+          child: widget.selected ? Image.asset(widget.imageAssetPath):
+        ));
   }
 }

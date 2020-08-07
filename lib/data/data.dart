@@ -1,5 +1,8 @@
 import 'package:card_game/module/tile_module.dart';
 
+int points = 0;
+bool selected = false;
+
 List<TileModel>getPairs(){
   List<TileModel> pairs = new List<TileModel>();
   TileModel tileModel = new TileModel(); 
@@ -47,6 +50,60 @@ List<TileModel>getPairs(){
   // 8
   tileModel = new TileModel(); 
   tileModel.setImageAssetPath("assets/raspberry.png");
+  tileModel.setIsSelected(false);
+  pairs.add(tileModel);
+  pairs.add(tileModel);
+
+  return pairs;
+  
+}
+List<TileModel>getQuestions(){
+  List<TileModel> pairs = new List<TileModel>();
+  TileModel tileModel = new TileModel(); 
+  // 1
+  tileModel.setImageAssetPath("assets/question.png");
+  tileModel.setIsSelected(false);
+  pairs.add(tileModel);
+  pairs.add(tileModel);
+  // 2
+  tileModel = new TileModel(); 
+  tileModel.setImageAssetPath("assets/question.png");
+  tileModel.setIsSelected(false);
+  pairs.add(tileModel);
+  pairs.add(tileModel);
+  // 3
+  tileModel = new TileModel(); 
+  tileModel.setImageAssetPath("assets/question.png");
+  tileModel.setIsSelected(false);
+  pairs.add(tileModel);
+  pairs.add(tileModel);
+  // 4
+  tileModel = new TileModel(); 
+  tileModel.setImageAssetPath("assets/question.png");
+  tileModel.setIsSelected(false);
+  pairs.add(tileModel);
+  pairs.add(tileModel);
+  // 5
+  tileModel = new TileModel(); 
+  tileModel.setImageAssetPath("assets/question.png");
+  tileModel.setIsSelected(false);
+  pairs.add(tileModel);
+  pairs.add(tileModel);
+  // 6
+  tileModel = new TileModel(); 
+  tileModel.setImageAssetPath("assets/question.png");
+  tileModel.setIsSelected(false);
+  pairs.add(tileModel);
+  pairs.add(tileModel);
+  // 7
+  tileModel = new TileModel(); 
+  tileModel.setImageAssetPath("assets/question.png");
+  tileModel.setIsSelected(false);
+  pairs.add(tileModel);
+  pairs.add(tileModel);
+  // 8
+  tileModel = new TileModel(); 
+  tileModel.setImageAssetPath("assets/question.png");
   tileModel.setIsSelected(false);
   pairs.add(tileModel);
   pairs.add(tileModel);
